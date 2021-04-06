@@ -1,0 +1,13 @@
+@mixin mediaSmall($maxW: 640px) {
+	// mobile devices
+	@media screen and (max-width: $maxW) {
+		@content;
+	}
+}
+
+@mixin mediaTouch() {
+	// touchscreens
+	@media (hover: none) and (pointer: coarse) {
+		@content;
+	}
+}
