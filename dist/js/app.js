@@ -4,7 +4,7 @@ const modalBox = document.querySelector(".cookie-modal");
 const buttonAccept = document.querySelector(".cookie-modal button");
 const uniqueStorageId = "cookieConsentUser111";
 const prevUserSelection = sessionStorage.getItem(uniqueStorageId);
-const GTM_ID = "GTM-0000000";
+const GTM_ID = "GTM-XXXXXXX";
 function injectGTMCode(id) {
     const script = document.createElement("script");
     window.dataLayer = window.dataLayer || [];
@@ -54,6 +54,7 @@ function setEventListeners() {
 document.addEventListener("DOMContentLoaded", () => {
     if (prevUserSelection) {
         console.log("Cookies already accepted.");
+        setCookie();
         return;
     }
     setOverlayVisibility();

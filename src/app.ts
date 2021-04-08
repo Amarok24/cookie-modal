@@ -16,7 +16,8 @@ const uniqueStorageId = "cookieConsentUser111";
 // localStorage could be used for more permanent solution
 const prevUserSelection: string | null = sessionStorage.getItem(uniqueStorageId);
 
-const GTM_ID = "GTM-0000000"; // EDIT THIS Google Tag Manager ID
+const GTM_ID = "GTM-XXXXXXX"; // EDIT THIS Google Tag Manager ID
+//const GTM_ID = "GTM-5JMSGQ4"; // Amazon
 
 
 function injectGTMCode(id: string)
@@ -100,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () =>
 	if (prevUserSelection)
 	{
 		console.log("Cookies already accepted.");
+		setCookie();
 		return;
 	}
 
