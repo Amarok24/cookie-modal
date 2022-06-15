@@ -1,7 +1,8 @@
 "use strict";
 const overlay = document.querySelector(".cookie-modal-wrap");
 const modalBox = document.querySelector(".cookie-modal");
-const buttonAccept = document.querySelector(".cookie-modal button");
+const buttonAccept = document.querySelector(".cookie-modal .cookie-accept");
+const buttonDecline = document.querySelector(".cookie-modal .cookie-decline");
 const uniqueStorageId = "cookieConsentUser111";
 const prevUserSelection = sessionStorage.getItem(uniqueStorageId);
 const GTM_ID = "GTM-XXXXXXX";
@@ -45,19 +46,31 @@ function onAccept() {
         removeChildrenOf(overlay);
     }
     console.log("Cookies accepted");
-    sessionStorage.setItem(uniqueStorageId, "x");
+    sessionStorage.setItem(uniqueStorageId, "y");
     setCookie();
+}
+function onDecline(ev) {
+    ev.preventDefault();
+    if (overlay) {
+        overlay.style.display = "none";
+        removeChildrenOf(overlay);
+    }
+    console.log("Cookies declined");
+    sessionStorage.setItem(uniqueStorageId, "n");
 }
 function setEventListeners() {
     buttonAccept?.addEventListener("click", onAccept);
+    buttonDecline?.addEventListener("click", onDecline);
 }
 document.addEventListener("DOMContentLoaded", () => {
     if (prevUserSelection) {
-        console.log("Cookies already accepted.");
-        setCookie();
+        console.log("Cookies already accepted or declined.");
+        if (prevUserSelection === 'y')
+            setCookie();
         return;
     }
     setOverlayVisibility();
     setTimeout(setModalFadeIn, 500);
     setEventListeners();
 });
+//# sourceMappingURL=app.js.map
